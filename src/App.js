@@ -60,7 +60,10 @@ function reducer(state, { type, payload }) {
         currentOperand: null,
       };
     case ACTIONS.CLEAR:
-      return {};
+      return {
+        currentOperand: "0"
+      };
+
     case ACTIONS.DELETE_DIGIT:
       if (state.overwrite) {
         return {
@@ -69,6 +72,9 @@ function reducer(state, { type, payload }) {
           currentOperand: null,
         };
       }
+
+      }
+
       if (state.currentOperand == null) return state;
       if (state.currentOperand.length === 1) {
         return { ...state, currentOperand: null };
@@ -78,6 +84,9 @@ function reducer(state, { type, payload }) {
         ...state,
         currentOperand: state.currentOperand.slice(0, -1),
       };
+
+
+
     case ACTIONS.EVALUATE:
       if (
         state.operation == null ||
